@@ -21,7 +21,7 @@ GROUP BY s.customer_id;
 ```
 **Explanation:**  
 We join `sales` with `menu` to get the price of each product purchased. Then we sum the prices for each `customer_id`.  
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ---
 
@@ -35,7 +35,7 @@ GROUP BY customer_id;
 ```
 **Explanation:**  
 We count distinct `order_date` per customer to find how many separate days they visited.  
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ---
 
@@ -58,7 +58,7 @@ WHERE rnk = 1;
 ```
 **Explanation:**  
 We use `RANK()` to order each customer’s purchases by date, then select the first one(s). If a customer bought multiple items on their first day, they will all be returned.  
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ---
 
@@ -76,7 +76,7 @@ LIMIT 1;
 ```
 **Explanation:**  
 We group all sales by product and count the total orders, ordering in descending order to find the top-selling item.  
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ---
 
@@ -99,7 +99,7 @@ WHERE rnk = 1;
 ```
 **Explanation:**  
 For each customer, we count orders of each product and rank them from most to least ordered, then filter to only the top-ranked items.  
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ---
 
@@ -130,7 +130,7 @@ WHERE rnk = 1;
 ```
 **Explanation:**  
 We filter sales to only those made on or after the `join_date`, rank them by date for each customer, and return the first purchase.  
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ---
 
@@ -161,7 +161,7 @@ WHERE rnk = 1;
 ```
 **Explanation:**  
 We filter sales to only those before the membership date, rank them in reverse order by date, and return the most recent purchase before joining.  
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ---
 
@@ -181,7 +181,7 @@ GROUP BY s.customer_id;
 ```
 **Explanation:**  
 We filter sales to pre-membership dates and aggregate item counts and total spend for each customer.  
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ---
 
@@ -202,7 +202,7 @@ GROUP BY s.customer_id;
 ```
 **Explanation:**  
 We multiply the price by 10 points per dollar, except sushi which earns double (20 points per dollar). The sum is grouped by customer.  
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ---
 
@@ -236,11 +236,8 @@ ORDER BY customer_id, points DESC;
 ```
 **Explanation:**  
 We filter sales to within the first 7 days (join date + 6 days), apply the points logic, then sum points per product for each customer to see the top point-generating item(s).  
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ---
 
-### Notes for your repo:
-- Keep `dannys_diner_queries.sql` for all the SQL together.
-- Keep `dannys_diner_solutions.md` for explanations and problem statements.
-- Replace all **Result / Screenshot** placeholders with actual screenshots from running the queries.
+
