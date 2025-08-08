@@ -24,7 +24,7 @@
 SELECT SUM(quantity) AS total_pizzas_ordered FROM order_items;
 ```
 **Explanation:** Sum the `quantity` column in `order_items` since each row indicates how many of a pizza were ordered.
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ### A2. Total revenue (completed orders)
 **Question:** What is the total revenue from completed orders?
@@ -35,7 +35,7 @@ FROM customer_orders
 WHERE order_status = 'completed';
 ```
 **Explanation:** Sum `total_price` filtering for completed orders to exclude cancellations/refunds.
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ### A3. Average order value (AOV)
 **Question:** What is the average order value?
@@ -46,7 +46,7 @@ FROM customer_orders
 WHERE order_status = 'completed';
 ```
 **Explanation:** Average of order totals for completed orders — useful KPI for revenue per order.
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ### A4. Top 10 pizzas by quantity sold
 **Question:** Which pizzas sell the most by quantity?
@@ -62,7 +62,7 @@ ORDER BY qty_sold DESC
 LIMIT 10;
 ```
 **Explanation:** Join order items with pizzas and orders, sum quantities per pizza, order descending.
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ### A5. Monthly orders trend
 **Question:** How do orders change month-over-month?
@@ -75,7 +75,7 @@ GROUP BY year_month
 ORDER BY year_month;
 ```
 **Explanation:** Group completed orders by year-month to detect seasonality.
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ---
 
@@ -91,7 +91,7 @@ JOIN customer_orders o ON ro.order_id = o.order_id
 WHERE o.order_status = 'completed';
 ```
 **Explanation:** Use TIMESTAMPDIFF to compute minutes between pickup and dropoff, then average.
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ### B2. Delivery time distribution (buckets)
 **Question:** How are deliveries distributed across time buckets (0–10, 11–20, etc.)?
@@ -114,7 +114,7 @@ GROUP BY bucket
 ORDER BY FIELD(bucket,'0-10','11-20','21-30','31-45','46+');
 ```
 **Explanation:** Bucket delivery minutes for a frequency distribution to identify late deliveries.
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ### B3. Runner performance: average deliveries per runner in a month
 **Question:** How many deliveries does each runner average per month?
@@ -131,7 +131,7 @@ GROUP BY ro.runner_id, r.name
 ORDER BY deliveries_count DESC;
 ```
 **Explanation:** Count unique orders per runner and divide by number of months they worked (approx) for per-month rate.
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ### B4. Percentage of late deliveries
 **Question:** What percentage of deliveries were late (dropoff_time > promised_delivery_datetime)?
@@ -143,7 +143,7 @@ JOIN customer_orders o ON ro.order_id = o.order_id
 WHERE o.order_status = 'completed';
 ```
 **Explanation:** Compute ratio of late dropoffs to all completed deliveries.
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ---
 
@@ -164,7 +164,7 @@ GROUP BY pi.ingredient_id, ing.ingredient_name, year_month
 ORDER BY year_month, total_units_used DESC;
 ```
 **Explanation:** Multiply ingredient qty per pizza by pizza quantity ordered and aggregate by month.
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ### C2. Cost per pizza (ingredient cost)
 **Question:** What is the ingredient cost per pizza?
@@ -179,7 +179,7 @@ GROUP BY p.pizza_id, p.pizza_name
 ORDER BY ingredient_cost DESC;
 ```
 **Explanation:** Sum ingredient costs for each pizza to estimate cost of goods sold per pizza.
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ### C3. Top 5 most expensive ingredients by usage cost this month
 **Question:** Which ingredients cost us the most this month based on usage?
@@ -197,7 +197,7 @@ ORDER BY total_cost DESC
 LIMIT 5;
 ```
 **Explanation:** Multiply qty * order quantity * cost per unit and aggregate over current month to find cost drivers.
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ---
 
@@ -219,7 +219,7 @@ ORDER BY avg_rating DESC
 LIMIT 10;
 ```
 **Explanation:** Average ratings per pizza; using order_items join to map ratings to pizzas.
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ### D2. Price sensitivity: average rating before and after price change
 **Question:** How did ratings change before vs after a price change?
@@ -239,7 +239,7 @@ FROM before_after
 GROUP BY pizza_id;
 ```
 **Explanation:** Window around price change to compare ratings pre/post change. Useful for pricing experiments.
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ---
 
@@ -257,7 +257,7 @@ GROUP BY cancel_reason
 ORDER BY cancelled_count DESC;
 ```
 **Explanation:** Counts cancellations by reason to prioritize operational fixes.
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ### E2. New vs returning customers monthly
 **Question:** How many new vs returning customers do we have each month?
@@ -276,11 +276,7 @@ GROUP BY year_month
 ORDER BY year_month;
 ```
 **Explanation:** Use the first order per customer to tag new vs returning customers per month.
-**Result / Screenshot:** *(Insert screenshot here)*
+
 
 ---
 
-### Notes
-- Replace column/table names if your CSV/schema differ.
-- Add indexes on `order_datetime`, `order_id`, and `pizza_id` for performance when running on large CSV imports.
-- For multi-pizza orders, ensure `order_items` correctly maps item to order and price.
