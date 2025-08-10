@@ -75,4 +75,4 @@ The [8 Week SQL Challenge](https://8weeksqlchallenge.com/) by [Danny Ma](https:/
 ## 🚀 How to Use
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/<your-username>/8-Week-SQL-Challenge.git
+   git clone https://github.com/manish-gahlot/8-Week-SQL-Challenge.git
